@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#04342C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Primeros Auxilios</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  :root {
+    --green-dark: #04342C;
+    --green-mid: #0F6E56;
+    --green-light: #1D9E75;
+    --green-pale: #E1F5EE;
+    --green-subtle: #9FE1CB;
+    --amber-bg: #FAEEDA;
+    --amber-border: #FAC775;
+    --amber-text: #633806;
+    --amber-icon: #854F0B;
+    --red-bg: #FCEBEB;
+    --red-border: #F7C1C1;
+    --red-text: #791F1F;
+    --red-icon: #A32D2D;
+    --blue-bg: #E6F1FB;
+    --blue-border: #B5D4F4;
+    --blue-text: #0C447C;
+    --blue-icon: #185FA5;
+    --surface: #ffffff;
+    --surface2: #f6f7f5;
+    --surface3: #eef0ec;
+    --text1: #1a1a18;
+    --text2: #5a5c58;
+    --text3: #8a8c87;
+    --border: rgba(0,0,0,0.09);
+    --border2: rgba(0,0,0,0.15);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --green-pale: #0a2e26;
+      --surface: #1a1c1a;
+      --surface2: #242624;
+      --surface3: #2e302e;
+      --text1: #e8ebe6;
+      --text2: #9ca89a;
+      --text3: #6b756a;
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+      --amber-bg: #2a2010;
+      --amber-border: #5a3e10;
+      --amber-text: #FAC775;
+      --amber-icon: #EF9F27;
+      --red-bg: #2a1010;
+      --red-border: #5a2020;
+      --red-text: #F7C1C1;
+      --red-icon: #F09595;
+      --blue-bg: #0a1828;
+      --blue-border: #183050;
+      --blue-text: #B5D4F4;
+      --blue-icon: #85B7EB;
+      --shadow: 0 2px 12px rgba(0,0,0,0.3);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--surface2);
+    color: var(--text1);
+    min-height: 100vh;
+    padding-bottom: 90px;
+  }
+
+  /* HEADER */
+  .app-header {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    padding: 52px 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .app-header::before {
+    content: '+';
+    position: absolute;
+    right: -16px; top: -30px;
+    font-size: 220px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 10px;
+  }
+  .app-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .app-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 4px;
+  }
+
+  /* NAV BOTTOM */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px 8px;
+    gap: 3px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--text3);
+    font-size: 10px;
+    font-family: inherit;
+    transition: color 0.15s;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .nav-item i { font-size: 22px; transition: transform 0.15s; }
+  .nav-item.active { color: var(--green-mid); }
+  .nav-item.active i { transform: scale(1.1); }
+  .nav-item:active { opacity: 0.7; }
+
+  /* MAIN CONTENT */
+  .main { padding: 16px; max-width: 600px; margin: 0 auto; }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border);
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green-mid);
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .card-title { font-size: 16px; font-weight: 600; color: var(--text1); }
+  .card-sub { font-size: 12px; color: var(--text3); margin-top: 1px; }
+
+  /* SECTION TITLE */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 20px 0 8px;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  /* ALERTS */
+  .alert {
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert i { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .alert p { font-size: 13px; line-height: 1.55; }
+  .alert strong { font-weight: 600; }
+  .alert-danger { background: var(--red-bg); border: 0.5px solid var(--red-border); }
+  .alert-danger i, .alert-danger p { color: var(--red-text); }
+  .alert-warning { background: var(--amber-bg); border: 0.5px solid var(--amber-border); }
+  .alert-warning i { color: var(--amber-icon); }
+  .alert-warning p { color: var(--amber-text); }
+  .alert-info { background: var(--blue-bg); border: 0.5px solid var(--blue-border); }
+  .alert-info i { color: var(--blue-icon); }
+  .alert-info p { color: var(--blue-text); }
+  .alert-success { background: var(--green-pale); border: 0.5px solid var(--green-subtle); }
+  .alert-success i { color: var(--green-mid); }
+  .alert-success p { color: var(--green-dark); }
+
+  /* STEPS */
+  .steps { list-style: none; }
+  .step-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .step-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .step-num {
+    min-width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    color: var(--green-mid);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-text { font-size: 14px; color: var(--text2); line-height: 1.5; }
+  .step-text strong { color: var(--text1); font-weight: 600; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .mini-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .mini-card .mini-icon { font-size: 26px; color: var(--green-mid); margin-bottom: 6px; }
+  .mini-card h3 { font-size: 13px; font-weight: 600; color: var(--text1); }
+  .mini-card p { font-size: 11px; color: var(--text3); margin-top: 3px; line-height: 1.4; }
+
+  /* ACCORDION */
+  .accordion { margin-bottom: 8px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); }
+  .acc-btn {
+    width: 100%;
+    background: var(--surface);
+    border: none;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text1);
+    font-family: inherit;
+    text-align: left;
+    transition: background 0.15s;
+  }
+  .acc-btn:active { background: var(--surface2); }
+  .acc-chevron { margin-left: auto; font-size: 16px; color: var(--text3); transition: transform 0.25s; flex-shrink: 0; }
+  .acc-btn.open .acc-chevron { transform: rotate(180deg); }
+  .acc-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: var(--surface2);
+  }
+  .acc-body.open { max-height: 400px; }
+  .acc-inner { padding: 12px 16px 16px; font-size: 14px; color: var(--text2); line-height: 1.6; border-top: 0.5px solid var(--border); }
+  .acc-inner strong { color: var(--text1); font-weight: 600; }
+
+  /* RCP ROWS */
+  .rcp-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .rcp-row:last-child { border-bottom: none; }
+  .rcp-circle {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .rcp-green { background: var(--green-pale); color: var(--green-mid); }
+  .rcp-amber { background: var(--amber-bg); color: var(--amber-icon); }
+  .rcp-red { background: var(--red-bg); color: var(--red-icon); }
+  .rcp-label { font-size: 14px; font-weight: 600; color: var(--text1); margin-bottom: 2px; }
+  .rcp-desc { font-size: 13px; color: var(--text2); line-height: 1.45; }
+
+  /* PHONE CARDS */
+  .phone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .phone-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-decoration: none;
+  }
+  .phone-card:active { transform: scale(0.97); box-shadow: none; }
+  .phone-icon { font-size: 24px; flex-shrink: 0; }
+  .phone-num { font-size: 20px; font-weight: 700; color: var(--text1); line-height: 1; }
+  .phone-lbl { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+  /* KIT ITEM */
+  .kit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .kit-item:last-child { border-bottom: none; }
+  .kit-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .kit-check.checked { background: var(--green-mid); border-color: var(--green-mid); }
+  .kit-check.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: 700; }
+  .kit-name { font-size: 14px; color: var(--text1); font-weight: 500; }
+  .kit-name.checked { text-decoration: line-through; color: var(--text3); }
+  .kit-desc { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  .reset-btn {
+    width: 100%;
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    font-size: 13px;
+    color: var(--text2);
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+    transition: background 0.15s;
+  }
+  .reset-btn:active { background: var(--surface3); }
+
+  /* SPLASH animation */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .section.active { animation: fadeUp 0.25s ease; }
+
+/* SPLASH SCREEN */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.splash-content {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  animation: fadeUp 0.45s ease;
+}
+
+.splash-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  padding: 8px 14px;
+  margin-bottom: 18px;
+  color: white;
+  font-size: 13px;
+}
+
+.splash-content h1 {
+  font-size: 42px;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.splash-content p {
+  color: rgba(255,255,255,0.82);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.start-btn {
+  width: 100%;
+  border: none;
+  border-radius: 18px;
+  background: white;
+  color: #04342C;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transition: transform 0.15s ease;
+}
+
+.start-btn:active {
+  transform: scale(0.98);
+}
+
+.hide-splash {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* DIAPOSITIVA "NO HACER" */
+.nohacer-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #1a0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.nohacer-screen.visible {
+  visibility: visible;
+  opacity: 1;
+  animation: fadeUp 0.35s ease;
+}
+.nohacer-content {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+.nohacer-x {
+  font-size: 110px;
+  line-height: 1;
+  color: #e53535;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 0 30px rgba(229,53,53,0.5));
+  animation: pulseX 1.8s ease-in-out infinite;
+}
+@keyframes pulseX {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 24px rgba(229,53,53,0.5)); }
+  50%       { transform: scale(1.07); filter: drop-shadow(0 0 44px rgba(229,53,53,0.8)); }
+}
+.nohacer-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.nohacer-list {
+  list-style: none;
+  margin-bottom: 28px;
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+}
+.nohacer-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: rgba(229,53,53,0.12);
+  border: 1px solid rgba(229,53,53,0.3);
+  border-radius: 12px;
+  font-size: 14px;
+  color: #ffc9c9;
+  line-height: 1.45;
+}
+.nohacer-list li::before {
+  content: '✕';
+  color: #e53535;
+  font-weight: 900;
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.nohacer-btn {
+  width: 100%;
+  border: none;
+  border-radius: 18px;
+  background: #1D9E75;
+  color: white;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(29,158,117,0.4);
+  transition: transform 0.15s ease, background 0.15s;
+}
+.nohacer-btn:active {
+  transform: scale(0.98);
+  background: #0F6E56;
+}
+
+</style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash-screen" class="splash-screen">
+  <div class="splash-content">
+    <div class="splash-badge">
+    
+    </div>
+
+    <h1>Primeros Auxilios<br>en Carreras Ciclistas</h1>
+
+    <p>
+      Aprende a actuar rápido ante caídas,
+      golpes y emergencias durante pruebas ciclistas.
+    </p>
+
+    <button class="start-btn" onclick="startCourse()">
+      Comenzar
+      <i class="ti ti-arrow-right"></i>
+    </button>
+  </div>
+</div>
+
+
+<!-- DIAPOSITIVA: LO QUE NO HAY QUE HACER -->
+<div id="nohacer-screen" class="nohacer-screen">
+  <div class="nohacer-content">
+    <div class="nohacer-x">✕</div>
+    <div class="nohacer-title">Lo que NO debes hacer</div>
+    <ul class="nohacer-list">
+      <li>Mover a la persona si sospechas lesión en columna o cuello</li>
+      <li>Dar agua o comida a alguien inconsciente o semiinconsciente</li>
+      <li>Quitar el casco de moto salvo paro cardiorrespiratorio</li>
+      <li>Retirar un objeto incrustado en una herida</li>
+      <li>Aplicar hielo directo sobre la piel (ni en quemaduras)</li>
+      <li>Dejar sola a la víctima una vez hayas comenzado a atenderla</li>
+      <li>Administrar medicamentos sin saber si la persona es alérgica</li>
+    </ul>
+    <button class="nohacer-btn" onclick="mostrarContenido()">
+      ¿Qué hacer? &nbsp;→
+    </button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="app-header">
+  <div class="header-badge"><i class="ti ti-first-aid-kit"></i> Guía de emergencia</div>
+  <h1>Primeros Auxilios</h1>
+  <p>Actúa rápido. Salva vidas.</p>
+</div>
+
+<!-- CONTENT -->
+<div class="main">
+
+  <!-- SECCIÓN: LO PRIMERO -->
+  <div id="s-inicio" class="section active">
+    <div class="section-label">Antes de actuar</div>
+    <div class="alert alert-warning">
+      <i class="ti ti-shield-exclamation"></i>
+      <p><strong>Regla PES:</strong> Proteger → Evaluar → Socorrer. Tu seguridad siempre es lo primero.</p>
+    </div>
+    <div class="grid-2">
+      <div class="mini-card"><div class="mini-icon"><i class="ti ti-eye"></i></div><h3>Proteger</h3><p>Asegura la zona, evita nuevos accidentes</p></div>
+      <div class="mini-card"><div class="mini-icon"><i class="ti ti-stethoscope"></i></div><h3>Evaluar</h3><p>¿Cuántos afectados? ¿Conscientes?</p></div>
+      <div class="mini-card"><div class="mini-icon"><i class="ti ti-phone"></i></div><h3>Alertar</h3><p>Llama al 112 antes de actuar</p></div>
+      <div class="mini-card"><div class="mini-icon"><i class="ti ti-hand-helping"></i></div><h3>Socorrer</h3><p>Presta ayuda con calma</p></div>
+    </div>
+
+    <div class="section-label">Evaluación rápida de la víctima</div>
+    <div class="card">
+      <ul class="steps">
+        <li class="step-item"><span class="step-num">1</span><span class="step-text">Comprueba que el entorno es seguro para acercarte</span></li>
+        <li class="step-item"><span class="step-num">2</span><span class="step-text">Habla: <strong>"¿Me escuchas? ¿Estás bien?"</strong></span></li>
+        <li class="step-item"><span class="step-num">3</span><span class="step-text">Si no responde, sacude suavemente los hombros</span></li>
+        <li class="step-item"><span class="step-num">4</span><span class="step-text">Comprueba si respira — ves, oyes, sientes (<strong>10 seg</strong>)</span></li>
+        <li class="step-item"><span class="step-num">5</span><span class="step-text">Llama al <strong>112</strong> o pide a alguien que lo haga</span></li>
+        <li class="step-item"><span class="step-num">6</span><span class="step-text">Actúa según lo que encuentres: RCP, posición lateral…</span></li>
+      </ul>
+    </div>
+
+    <div class="alert alert-danger">
+      <i class="ti ti-ban"></i>
+      <p><strong>Nunca hagas esto:</strong> mover a una persona si sospechas lesión en la columna, dar agua o comida, quitar el casco de moto.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: RCP -->
+  <div id="s-rcp" class="section">
+    <div class="alert alert-info">
+      <i class="ti ti-info-circle"></i>
+      <p>Sin RCP, la supervivencia baja un <strong>10% cada minuto</strong>. Actúa de inmediato mientras esperas al 112.</p>
+    </div>
+
+    <div class="section-label">Protocolo RCP adultos</div>
+    <div class="card">
+      <div class="rcp-row">
+        <div class="rcp-circle rcp-green"><i class="ti ti-phone"></i></div>
+        <div><div class="rcp-label">1. Llama al 112</div><div class="rcp-desc">Pon el manos libres activo para seguir sus instrucciones mientras actúas.</div></div>
+      </div>
+      <div class="rcp-row">
+        <div class="rcp-circle rcp-amber"><i class="ti ti-hand"></i></div>
+        <div><div class="rcp-label">2. Compresiones torácicas</div><div class="rcp-desc">Centro del pecho · 30 compresiones · 5–6 cm de profundidad · ritmo 100–120/min (canción "Staying Alive")</div></div>
+      </div>
+      <div class="rcp-row">
+        <div class="rcp-circle rcp-amber"><i class="ti ti-wind"></i></div>
+        <div><div class="rcp-label">3. Ventilaciones (si estás entrenado)</div><div class="rcp-desc">2 ventilaciones tras las 30 compresiones. Si no sabes hacerlas, solo compresiones continuas.</div></div>
+      </div>
+      <div class="rcp-row">
+        <div class="rcp-circle rcp-green"><i class="ti ti-refresh"></i></div>
+        <div><div class="rcp-label">4. Repite el ciclo 30:2</div><div class="rcp-desc">No pares hasta que lleguen los servicios de emergencia o la persona recupere la conciencia.</div></div>
+      </div>
+      <div class="rcp-row">
+        <div class="rcp-circle rcp-red"><i class="ti ti-bolt"></i></div>
+        <div><div class="rcp-label">5. DEA (desfibrilador)</div><div class="rcp-desc">Si hay uno cerca, úsalo. Te guiará con voz paso a paso. No tengas miedo, no puede hacer daño.</div></div>
+      </div>
+    </div>
+
+    <div class="alert alert-success">
+      <i class="ti ti-baby"></i>
+      <p><strong>Bebés y niños:</strong> 2 dedos en el centro del pecho (bebés) o una mano (niños pequeños). Profundidad 4 cm. Misma secuencia 30:2.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: SITUACIONES -->
+  <div id="s-situaciones" class="section">
+    <div class="section-label">Emergencias frecuentes · toca para ver qué hacer</div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-droplet-half-filled" style="color:#A32D2D;font-size:20px"></i> Hemorragia intensa
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">Aplica <strong>presión directa y continua</strong> con un paño limpio. No retires el paño si se empapa, añade más encima. Eleva el miembro si es posible. Si el sangrado no cede en extremidades, considera torniquete. Llama al 112.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-flame" style="color:#854F0B;font-size:20px"></i> Quemaduras
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">Enfría con <strong>agua fría (no helada) durante 10–20 min</strong>. No pongas hielo, pasta de dientes ni aceite. No revientes ampollas. Cubre con apósito estéril. Quemaduras extensas, en cara, manos o genitales → urgencias.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-brain" style="color:#533AB7;font-size:20px"></i> Pérdida de conciencia
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">Si respira: coloca en <strong>posición lateral de seguridad (PLS)</strong>. Si no respira: inicia RCP. Llama al 112. No dejes sola a la persona. No pongas nada en la boca.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-lungs" style="color:#185FA5;font-size:20px"></i> Atragantamiento
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">Si tose con fuerza, anímale a seguir tosiendo. Si no puede toser ni hablar: <strong>5 golpes en la espalda</strong> entre los omóplatos. Si persiste: <strong>5 compresiones abdominales</strong> (maniobra de Heimlich). Llama al 112 si no mejora. En embarazadas y bebés: adaptación especial.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-activity" style="color:#993C1D;font-size:20px"></i> Crisis convulsiva
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">Protege la cabeza con algo suave. Aleja objetos peligrosos. <strong>No inmovilices</strong> a la persona ni pongas nada en la boca. Cronometra la duración. Al terminar, pon en PLS. Llama al 112 si dura más de 5 min o es la primera vez.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-bone" style="color:#5F5E5A;font-size:20px"></i> Fractura o esguince
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner"><strong>Inmoviliza</strong> la zona en la posición en que se encuentra. Aplica frío envuelto en tela. No intentes realinear el hueso. Si hay herida abierta sobre la fractura → urgencias de inmediato. Eleva el miembro si es posible.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-heart-broken" style="color:#993556;font-size:20px"></i> Posible infarto
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner"><strong>Señales:</strong> dolor opresivo en pecho o brazo izquierdo, sudoración fría, dificultad para respirar. Llama al <strong>112 de inmediato</strong>. Siéntale cómodamente. No le dejes moverse. Si está disponible y no es alérgico: aspirina 300 mg masticada.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="acc-btn" onclick="toggleAcc(this)">
+        <i class="ti ti-sun" style="color:#854F0B;font-size:20px"></i> Golpe de calor
+        <i class="ti ti-chevron-down acc-chevron"></i>
+      </button>
+      <div class="acc-body">
+        <div class="acc-inner">Traslada a la persona a un lugar <strong>fresco y a la sombra</strong>. Humedece la piel con agua fría. Aplica hielo envuelto en tela en cuello, axilas e ingles. Da agua si está consciente. Llama al 112 si no mejora en 15 min o pierde la conciencia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: BOTIQUÍN -->
+  <div id="s-kit" class="section">
+    <div class="section-label">Lista de verificación · toca para marcar</div>
+    <div class="card">
+      <div id="kit-list">
+        <!-- se genera con JS -->
+      </div>
+      <button class="reset-btn" onclick="resetKit()"><i class="ti ti-refresh"></i> Reiniciar lista</button>
+    </div>
+    <div class="alert alert-warning">
+      <i class="ti ti-calendar"></i>
+      <p>Revisa las fechas de caducidad <strong>cada 6 meses</strong>. Guarda el botiquín fuera del alcance de niños pero accesible en emergencias.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: NÚMEROS -->
+  <div id="s-numeros" class="section">
+    <div class="section-label">Números de emergencia · toca para llamar</div>
+    <div class="phone-grid">
+      <a class="phone-card" href="tel:112">
+        <i class="ti ti-urgent phone-icon" style="color:#A32D2D"></i>
+        <div><div class="phone-num">112</div><div class="phone-lbl">Emergencias</div></div>
+      </a>
+      <a class="phone-card" href="tel:061">
+        <i class="ti ti-ambulance phone-icon" style="color:#185FA5"></i>
+        <div><div class="phone-num">061</div><div class="phone-lbl">Urgencias sanitarias</div></div>
+      </a>
+      <a class="phone-card" href="tel:091">
+        <i class="ti ti-shield phone-icon" style="color:#0F6E56"></i>
+        <div><div class="phone-num">091</div><div class="phone-lbl">Policía Nacional</div></div>
+      </a>
+      <a class="phone-card" href="tel:080">
+        <i class="ti ti-firetruck phone-icon" style="color:#854F0B"></i>
+        <div><div class="phone-num">080</div><div class="phone-lbl">Bomberos</div></div>
+      </a>
+      <a class="phone-card" href="tel:9156200420">
+        <i class="ti ti-pill phone-icon" style="color:#533AB7"></i>
+        <div><div class="phone-num" style="font-size:14px">915 620 420</div><div class="phone-lbl">Info Toxicológica</div></div>
+      </a>
+      <a class="phone-card" href="tel:062">
+        <i class="ti ti-badge phone-icon" style="color:#993C1D"></i>
+        <div><div class="phone-num">062</div><div class="phone-lbl">Guardia Civil</div></div>
+      </a>
+    </div>
+
+    <div class="section-label">Qué decir al llamar al 112</div>
+    <div class="card">
+      <ul class="steps">
+        <li class="step-item"><span class="step-num">1</span><span class="step-text">Qué ha ocurrido (accidente, desmayo, incendio…)</span></li>
+        <li class="step-item"><span class="step-num">2</span><span class="step-text">Dónde estás exactamente (calle, número, municipio)</span></li>
+        <li class="step-item"><span class="step-num">3</span><span class="step-text">Cuántas personas están afectadas</span></li>
+        <li class="step-item"><span class="step-num">4</span><span class="step-text">Estado de la víctima (consciente, respira, sangra…)</span></li>
+        <li class="step-item"><span class="step-num">5</span><span class="step-text">Tu nombre y número de teléfono</span></li>
+        <li class="step-item"><span class="step-num">6</span><span class="step-text"><strong>No cuelgues</strong> hasta que te lo indiquen</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active" onclick="showSection('inicio', this)">
+    <i class="ti ti-alert-circle"></i>
+    <span>Lo primero</span>
+  </button>
+  <button class="nav-item" onclick="showSection('rcp', this)">
+    <i class="ti ti-heart-rate-monitor"></i>
+    <span>RCP</span>
+  </button>
+  <button class="nav-item" onclick="showSection('situaciones', this)">
+    <i class="ti ti-alert-triangle"></i>
+    <span>Situaciones</span>
+  </button>
+  <button class="nav-item" onclick="showSection('kit', this)">
+    <i class="ti ti-briefcase-medical"></i>
+    <span>Botiquín</span>
+  </button>
+  <button class="nav-item" onclick="showSection('numeros', this)">
+    <i class="ti ti-phone-call"></i>
+    <span>Números</span>
+  </button>
+</nav>
+
+<script>
+const kitItems = [
+  { name: 'Guantes de látex o nitrilo', desc: 'Protección para el socorrista' },
+  { name: 'Gasas estériles y apósitos', desc: 'Para cubrir heridas' },
+  { name: 'Vendas de distintos tamaños', desc: 'Inmovilización y compresión' },
+  { name: 'Esparadrapo', desc: 'Fijación de apósitos' },
+  { name: 'Tijeras y pinzas', desc: 'Manejo de materiales' },
+  { name: 'Solución antiséptica', desc: 'Clorhexidina o povidona yodada' },
+  { name: 'Suero fisiológico', desc: 'Limpieza de heridas y ojos' },
+  { name: 'Termómetro', desc: '' },
+  { name: 'Analgésico / antitérmico', desc: 'Paracetamol o ibuprofeno' },
+  { name: 'Manta isotérmica', desc: 'Prevención de hipotermia' },
+  { name: 'Linterna pequeña', desc: '' },
+  { name: 'Mascarilla de RCP', desc: 'Para reanimación facial' },
+];
+
+function startCourse() {
+  const splash = document.getElementById('splash-screen');
+  const nohacer = document.getElementById('nohacer-screen');
+  // Poner nohacer visible y opaco ANTES de que el splash empiece a desvanecerse
+  // así tapa el fondo verde en cuanto el splash se hace transparente
+  nohacer.style.transition = 'none';
+  nohacer.style.visibility = 'visible';
+  nohacer.style.opacity = '1';
+  nohacer.classList.add('visible');
+  // Ahora desvanecer el splash encima
+  splash.classList.add('hide-splash');
+  setTimeout(() => {
+    splash.style.visibility = 'hidden';
+  }, 400);
+}
+
+function mostrarContenido() {
+  const nohacer = document.getElementById('nohacer-screen');
+  nohacer.classList.remove('visible');
+  setTimeout(() => {
+    nohacer.style.visibility = 'hidden';
+  }, 400);
+}
+
+function buildKit() {
+  const saved = JSON.parse(localStorage.getItem('kit') || '[]');
+  const el = document.getElementById('kit-list');
+  el.innerHTML = kitItems.map((item, i) => {
+    const checked = saved.includes(i);
+    return `<div class="kit-item" id="kit-${i}">
+      <div class="kit-check${checked ? ' checked' : ''}" onclick="toggleKit(${i})"></div>
+      <div>
+        <div class="kit-name${checked ? ' checked' : ''}">${item.name}</div>
+        ${item.desc ? `<div class="kit-desc">${item.desc}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleKit(i) {
+  const saved = JSON.parse(localStorage.getItem('kit') || '[]');
+  const idx = saved.indexOf(i);
+  if (idx === -1) saved.push(i); else saved.splice(idx, 1);
+  localStorage.setItem('kit', JSON.stringify(saved));
+  buildKit();
+}
+
+function resetKit() {
+  localStorage.removeItem('kit');
+  buildKit();
+}
+
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAcc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-btn').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
+}
+
+buildKit();
+</script>
+</body>
+</html>
